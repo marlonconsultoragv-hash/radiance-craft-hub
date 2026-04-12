@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663375312138/SwPWPBchFuFewecT.png";
 
@@ -26,10 +27,20 @@ const Header = () => {
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleClick = (item: typeof menuItems[0]) => {
     setIsOpen(false);
     if (item.isPage) {
-      window.location.href = item.href;
+      navigate(item.href);
+      return;
+    }
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        document.querySelector(item.href)?.scrollIntoView({ behavior: "smooth" });
+      }, 300);
       return;
     }
     const el = document.querySelector(item.href);
