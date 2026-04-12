@@ -49,15 +49,6 @@ const HeroSection = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up-delay-3">
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full text-base font-semibold shadow-elegant transition-all duration-300 hover:scale-105 hover:shadow-2xl bg-[#25D366] text-primary-foreground"
-          >
-            <MessageCircle className="w-5 h-5 transition-transform group-hover:scale-110" />
-            Agendar avaliação no WhatsApp
-          </a>
         </div>
       </div>
 
