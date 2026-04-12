@@ -16,7 +16,7 @@ import procCelulite from "@/assets/proc-celulite.jpg";
 import procQueloides from "@/assets/proc-queloides.jpg";
 import procCorporal from "@/assets/proc-corporal.jpg";
 
-const WHATSAPP_BASE = "https://wa.me/5565992191416?text=Olá!%20Gostaria%20de%20agendar%20";
+const WHATSAPP_BASE = "https://wa.me/5565992191416?text=Olá%20vim%20do%20site!%20Gostaria%20de%20agendar%20";
 
 interface ProcedureSection {
   title: string;
@@ -334,7 +334,7 @@ const Procedimentos = () => {
             Entre em contato e agende sua avaliação personalizada.
           </p>
           <a
-            href="https://wa.me/5565992191416?text=Olá!%20Gostaria%20de%20agendar%20uma%20avaliação"
+            href="https://wa.me/5565992191416?text=Olá%20vim%20do%20site!%20Gostaria%20de%20agendar%20uma%20avaliação"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-brand text-primary-foreground font-semibold tracking-wide hover:shadow-elegant hover:scale-105 transition-all duration-300"
