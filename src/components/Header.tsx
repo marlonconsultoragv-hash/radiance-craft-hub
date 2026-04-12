@@ -76,20 +76,20 @@ const Header = () => {
             className="relative w-10 h-10 flex items-center justify-center z-[60] group"
             aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
           >
-            <div className="flex flex-col justify-center items-center w-6 h-6">
+            <div className="relative w-6 h-6">
               <span
-                className={`block h-[2px] w-6 bg-primary-foreground rounded-full transition-all duration-300 ease-out ${
-                  isOpen ? "rotate-45 translate-y-[5px]" : ""
+                className={`absolute left-0 top-[4px] block h-[2px] w-6 bg-primary-foreground rounded-full transition-all duration-300 ease-out origin-center ${
+                  isOpen ? "rotate-45 top-[11px]" : ""
                 }`}
               />
               <span
-                className={`block h-[2px] w-6 bg-primary-foreground rounded-full transition-all duration-300 ease-out mt-[8px] ${
+                className={`absolute left-0 top-[11px] block h-[2px] w-6 bg-primary-foreground rounded-full transition-all duration-300 ease-out ${
                   isOpen ? "opacity-0 scale-x-0" : ""
                 }`}
               />
               <span
-                className={`block h-[2px] w-6 bg-primary-foreground rounded-full transition-all duration-300 ease-out mt-[8px] ${
-                  isOpen ? "-rotate-45 -translate-y-[13px]" : ""
+                className={`absolute left-0 top-[18px] block h-[2px] w-6 bg-primary-foreground rounded-full transition-all duration-300 ease-out origin-center ${
+                  isOpen ? "-rotate-45 top-[11px]" : ""
                 }`}
               />
             </div>
