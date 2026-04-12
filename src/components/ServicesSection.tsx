@@ -1,7 +1,7 @@
 import { Snowflake, Droplets, Smile, Activity } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
-const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20";
+const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá%20vim%20do%20site!%20Gostaria%20de%20saber%20mais%20sobre%20";
 
 const services = [
   {

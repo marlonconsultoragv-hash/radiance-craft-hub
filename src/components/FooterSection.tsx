@@ -1,7 +1,7 @@
 import { Instagram, MessageCircle, MapPin, Phone } from "lucide-react";
 
 const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663375312138/SwPWPBchFuFewecT.png";
-const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá!%20Gostaria%20de%20agendar%20uma%20avaliação%20na%20Body%20Soul.";
+const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá%20vim%20do%20site!%20Gostaria%20de%20agendar%20uma%20avaliação%20na%20Body%20Soul.";
 
 const FooterSection = () => {
   return (

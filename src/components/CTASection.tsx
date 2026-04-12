@@ -1,7 +1,7 @@
 import { MessageCircle } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
-const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá!%20Gostaria%20de%20agendar%20uma%20avaliação%20na%20Body%20Soul.";
+const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá%20vim%20do%20site!%20Gostaria%20de%20agendar%20uma%20avaliação%20na%20Body%20Soul.";
 
 const CTASection = () => {
   return (
