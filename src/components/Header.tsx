@@ -73,23 +73,23 @@ const Header = () => {
           {/* Hamburger Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="relative w-10 h-10 flex items-center justify-center z-[60] group"
+            className="relative w-12 h-12 flex items-center justify-center z-[80] group overflow-visible"
             aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
           >
-            <div className="relative w-6 h-6">
+            <div className="relative w-7 h-7 overflow-visible">
               <span
-                className={`absolute left-0 top-[4px] block h-[2px] w-6 bg-primary-foreground rounded-full transition-all duration-300 ease-out origin-center ${
-                  isOpen ? "rotate-45 top-[11px]" : ""
+                className={`absolute left-0 block h-[2px] w-7 bg-primary-foreground rounded-full transition-all duration-300 ease-out origin-center ${
+                  isOpen ? "rotate-45 top-[12px]" : "top-[4px]"
                 }`}
               />
               <span
-                className={`absolute left-0 top-[11px] block h-[2px] w-6 bg-primary-foreground rounded-full transition-all duration-300 ease-out ${
+                className={`absolute left-0 top-[12px] block h-[2px] w-7 bg-primary-foreground rounded-full transition-all duration-300 ease-out ${
                   isOpen ? "opacity-0 scale-x-0" : ""
                 }`}
               />
               <span
-                className={`absolute left-0 top-[18px] block h-[2px] w-6 bg-primary-foreground rounded-full transition-all duration-300 ease-out origin-center ${
-                  isOpen ? "-rotate-45 top-[11px]" : ""
+                className={`absolute left-0 block h-[2px] w-7 bg-primary-foreground rounded-full transition-all duration-300 ease-out origin-center ${
+                  isOpen ? "-rotate-45 top-[12px]" : "top-[20px]"
                 }`}
               />
             </div>
