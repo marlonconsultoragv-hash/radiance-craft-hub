@@ -43,8 +43,8 @@ const FooterSection = () => {
           <div>
             <h3 className="font-heading font-semibold text-lg mb-4">Horário</h3>
             <ul className="space-y-2 text-sm text-primary-foreground/70">
-              <li>Segunda a Sexta: 8h às 19h</li>
-              <li>Sábado: 8h às 14h</li>
+              <li>Segunda a Sexta: 8h às 18h</li>
+              <li>Sábado: 8h às 13h</li>
               <li>Domingo: Fechado</li>
             </ul>
           </div>
