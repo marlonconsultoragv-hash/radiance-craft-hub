@@ -15,7 +15,7 @@ const FooterSection = () => {
               Especialistas em estética avançada em Cuiabá – MT. Beleza com segurança, naturalidade e excelência.
             </p>
             <div className="flex gap-3 mt-5">
-              <a href="https://instagram.com/bodysoulesteticaavancada" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
+              <a href="https://www.instagram.com/bodysoulesteticaavancada?igsh=MWl6cGF1dm4xbzc3&utm_source=qr" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
                 <Instagram className="w-4 h-4" />
               </a>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors">
@@ -34,7 +34,7 @@ const FooterSection = () => {
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-gold-light shrink-0 mt-0.5" />
-                Cuiabá – MT
+                Av. Pres. Afonso Pena, 1032 – Quilombo, Cuiabá – MT
               </li>
             </ul>
           </div>
