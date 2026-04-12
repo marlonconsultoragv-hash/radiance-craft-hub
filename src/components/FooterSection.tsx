@@ -5,7 +5,7 @@ const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá!%20Gostaria%20de%20a
 
 const FooterSection = () => {
   return (
-    <footer className="bg-brand text-primary-foreground">
+    <footer id="localizacao" className="bg-brand text-primary-foreground">
       <div className="section-container px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}

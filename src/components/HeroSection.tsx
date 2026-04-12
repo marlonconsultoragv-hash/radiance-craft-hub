@@ -1,18 +1,17 @@
-import { MessageCircle, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-clinic.jpg";
 
-const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá!%20Gostaria%20de%20agendar%20uma%20avaliação%20na%20Body%20Soul.";
 const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663375312138/SwPWPBchFuFewecT.png";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
           src={heroImage}
           alt="Body Soul Clínica de Estética"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center"
           width={1920}
           height={1080}
         />
@@ -47,9 +46,6 @@ const HeroSection = () => {
           Tratamentos estéticos personalizados com os melhores equipamentos do mercado.
           Resultados visíveis, naturais e duradouros.
         </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up-delay-3">
-        </div>
       </div>
 
       {/* Scroll indicator */}

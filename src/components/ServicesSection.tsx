@@ -32,7 +32,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="section-padding bg-background">
+    <section id="procedimentos" className="section-padding bg-background">
       <div className="section-container">
         <ScrollReveal>
           <div className="text-center mb-16">
