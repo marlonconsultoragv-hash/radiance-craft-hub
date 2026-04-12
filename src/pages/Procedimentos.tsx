@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
+import Header from "@/components/Header";
 import ScrollReveal from "@/components/ScrollReveal";
 
 import procBotox from "@/assets/proc-botox.jpg";
@@ -289,6 +290,7 @@ const Procedimentos = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Header />
       {/* Hero Banner */}
       <section className="relative bg-gradient-brand pt-28 pb-16 md:pt-36 md:pb-20 px-4">
         <div className="absolute top-10 right-10 w-72 h-72 rounded-full bg-gold/10 blur-3xl animate-float" />
