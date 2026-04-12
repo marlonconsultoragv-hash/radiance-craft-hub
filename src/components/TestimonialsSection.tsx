@@ -30,7 +30,7 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="section-padding bg-cream">
+    <section id="resultados" className="section-padding bg-cream">
       <div className="section-container">
         <ScrollReveal>
           <div className="text-center mb-16">
