@@ -34,7 +34,7 @@ const FooterSection = () => {
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-gold-light shrink-0 mt-0.5" />
-                Cuiabá – MT
+                Av. Pres. Afonso Pena, 1032 – Quilombo, Cuiabá – MT
               </li>
             </ul>
           </div>
