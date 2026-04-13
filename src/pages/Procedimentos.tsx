@@ -286,29 +286,46 @@ const ProcedureCard = ({ procedure, index }: { procedure: Procedure; index: numb
   </ScrollReveal>
 );
 
-const ProcedureNav = ({ activeSlug, onSelect }: { activeSlug: string; onSelect: (slug: string) => void }) => (
-  <nav className="sticky top-16 z-40 bg-background/90 backdrop-blur-md border-b border-border/50 shadow-sm">
-    <div className="max-w-5xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto scrollbar-hide">
-      {procedures.map((proc) => {
-        const slug = toSlug(proc.name);
-        const isActive = slug === activeSlug;
-        return (
-          <button
-            key={proc.name}
-            onClick={() => onSelect(slug)}
-            className={`whitespace-nowrap px-4 py-2 rounded-full text-xs font-medium border transition-all duration-300 shrink-0 ${
-              isActive
-                ? "bg-brand text-primary-foreground border-brand"
-                : "border-border/50 bg-card hover:bg-primary hover:text-primary-foreground"
-            }`}
-          >
-            {proc.name}
-          </button>
-        );
-      })}
-    </div>
-  </nav>
-);
+const ProcedureNav = ({ activeSlug, onSelect }: { activeSlug: string; onSelect: (slug: string) => void }) => {
+  const [open, setOpen] = useState(false);
+  const activeName = procedures.find((p) => toSlug(p.name) === activeSlug)?.name ?? "Selecione um procedimento";
+
+  return (
+    <nav className="sticky top-16 z-40 bg-background/90 backdrop-blur-md border-b border-border/50 shadow-sm">
+      <div className="max-w-5xl mx-auto px-4 py-3 relative">
+        <button
+          onClick={() => setOpen((v) => !v)}
+          className="w-full flex items-center justify-between px-4 py-3 rounded-xl border border-border/50 bg-card text-sm font-medium text-brand shadow-sm hover:border-brand/50 transition-all duration-300"
+        >
+          <span>{activeName}</span>
+          <svg className={`w-4 h-4 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+        </button>
+
+        {open && (
+          <div className="absolute left-4 right-4 top-full mt-1 rounded-xl border border-border/50 bg-card shadow-lg z-50 max-h-72 overflow-y-auto">
+            {procedures.map((proc) => {
+              const slug = toSlug(proc.name);
+              const isActive = slug === activeSlug;
+              return (
+                <button
+                  key={proc.name}
+                  onClick={() => { onSelect(slug); setOpen(false); }}
+                  className={`w-full text-left px-4 py-3 text-sm transition-colors duration-200 first:rounded-t-xl last:rounded-b-xl ${
+                    isActive
+                      ? "bg-brand text-primary-foreground font-semibold"
+                      : "text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {proc.name}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
 
 const Procedimentos = () => {
   const [activeSlug, setActiveSlug] = useState(() => toSlug(procedures[0].name));
