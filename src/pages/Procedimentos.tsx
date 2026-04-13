@@ -286,9 +286,59 @@ const ProcedureCard = ({ procedure, index }: { procedure: Procedure; index: numb
   </ScrollReveal>
 );
 
+const ProcedureNav = ({ activeSlug, onSelect }: { activeSlug: string; onSelect: (slug: string) => void }) => (
+  <nav className="sticky top-16 z-40 bg-background/90 backdrop-blur-md border-b border-border/50 shadow-sm">
+    <div className="max-w-5xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto scrollbar-hide">
+      {procedures.map((proc) => {
+        const slug = toSlug(proc.name);
+        const isActive = slug === activeSlug;
+        return (
+          <button
+            key={proc.name}
+            onClick={() => onSelect(slug)}
+            className={`whitespace-nowrap px-4 py-2 rounded-full text-xs font-medium border transition-all duration-300 shrink-0 ${
+              isActive
+                ? "bg-brand text-primary-foreground border-brand"
+                : "border-border/50 bg-card hover:bg-primary hover:text-primary-foreground"
+            }`}
+          >
+            {proc.name}
+          </button>
+        );
+      })}
+    </div>
+  </nav>
+);
+
 const Procedimentos = () => {
+  const [activeSlug, setActiveSlug] = useState(() => toSlug(procedures[0].name));
+
+  const handleNavClick = useCallback((slug: string) => {
+    setActiveSlug(slug);
+    document.getElementById(slug)?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length > 0) {
+          setActiveSlug(visible[0].target.id);
+        }
+      },
+      { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
+    );
+
+    procedures.forEach((proc) => {
+      const el = document.getElementById(toSlug(proc.name));
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -319,23 +369,7 @@ const Procedimentos = () => {
       </section>
 
       {/* Sticky Procedure Nav */}
-      <nav className="sticky top-16 z-40 bg-background/90 backdrop-blur-md border-b border-border/50 shadow-sm">
-        <div className="max-w-5xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto scrollbar-hide">
-          {procedures.map((proc) => (
-            <a
-              key={proc.name}
-              href={`#${toSlug(proc.name)}`}
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById(toSlug(proc.name))?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="whitespace-nowrap px-4 py-2 rounded-full text-xs font-medium border border-border/50 bg-card hover:bg-primary hover:text-primary-foreground transition-all duration-300 shrink-0"
-            >
-              {proc.name}
-            </a>
-          ))}
-        </div>
-      </nav>
+      <ProcedureNav activeSlug={activeSlug} onSelect={handleNavClick} />
 
       {/* Procedures Grid */}
       <section className="section-padding">

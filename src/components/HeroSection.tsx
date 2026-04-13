@@ -27,7 +27,7 @@ const HeroSection = () => {
         <img
           src={LOGO_URL}
           alt="Body Soul Estética Avançada"
-          className="h-24 md:h-36 w-auto object-contain mx-auto mb-8 drop-shadow-lg animate-fade-up"
+          className="h-32 md:h-44 lg:h-52 w-auto object-contain mx-auto mb-8 drop-shadow-lg animate-fade-up"
           style={{ filter: "brightness(0) invert(1)" }}
         />
 
