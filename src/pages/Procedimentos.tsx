@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
@@ -238,9 +238,12 @@ const procedures: Procedure[] = [
   },
 ];
 
+const toSlug = (name: string) =>
+  name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 const ProcedureCard = ({ procedure, index }: { procedure: Procedure; index: number }) => (
   <ScrollReveal delay={index * 60}>
-    <article className="group rounded-2xl overflow-hidden border border-border/50 bg-card shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1">
+    <article id={toSlug(procedure.name)} className="group rounded-2xl overflow-hidden border border-border/50 bg-card shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1 scroll-mt-36">
       {/* Image */}
       <div className="relative overflow-hidden aspect-[16/10]">
         <img
@@ -314,6 +317,25 @@ const Procedimentos = () => {
           </p>
         </div>
       </section>
+
+      {/* Sticky Procedure Nav */}
+      <nav className="sticky top-16 z-40 bg-background/90 backdrop-blur-md border-b border-border/50 shadow-sm">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto scrollbar-hide">
+          {procedures.map((proc) => (
+            <a
+              key={proc.name}
+              href={`#${toSlug(proc.name)}`}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById(toSlug(proc.name))?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="whitespace-nowrap px-4 py-2 rounded-full text-xs font-medium border border-border/50 bg-card hover:bg-primary hover:text-primary-foreground transition-all duration-300 shrink-0"
+            >
+              {proc.name}
+            </a>
+          ))}
+        </div>
+      </nav>
 
       {/* Procedures Grid */}
       <section className="section-padding">
