@@ -318,6 +318,25 @@ const Procedimentos = () => {
         </div>
       </section>
 
+      {/* Sticky Procedure Nav */}
+      <nav className="sticky top-16 z-40 bg-background/90 backdrop-blur-md border-b border-border/50 shadow-sm">
+        <div className="max-w-5xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto scrollbar-hide">
+          {procedures.map((proc) => (
+            <a
+              key={proc.name}
+              href={`#${toSlug(proc.name)}`}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById(toSlug(proc.name))?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="whitespace-nowrap px-4 py-2 rounded-full text-xs font-medium border border-border/50 bg-card hover:bg-primary hover:text-primary-foreground transition-all duration-300 shrink-0"
+            >
+              {proc.name}
+            </a>
+          ))}
+        </div>
+      </nav>
+
       {/* Procedures Grid */}
       <section className="section-padding">
         <div className="max-w-5xl mx-auto grid grid-cols-1 gap-10 md:gap-14">
