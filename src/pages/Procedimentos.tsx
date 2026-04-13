@@ -241,6 +241,51 @@ const procedures: Procedure[] = [
 const toSlug = (name: string) =>
   name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
+const ProcedureCard = ({ procedure, index }: { procedure: Procedure; index: number }) => (
+  <ScrollReveal delay={index * 60}>
+    <article id={toSlug(procedure.name)} className="group rounded-2xl overflow-hidden border border-border/50 bg-card shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1 scroll-mt-36">
+      {/* Image */}
+      <div className="relative overflow-hidden aspect-[16/10]">
+        <img
+          src={procedure.image}
+          alt={procedure.name}
+          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 to-transparent" />
+      </div>
+
+      {/* Content */}
+      <div className="p-6 md:p-8 space-y-5">
+        <h2 className="font-heading text-2xl md:text-3xl font-bold text-brand leading-tight">
+          {procedure.name}
+        </h2>
+
+        {procedure.sections.map((section) => (
+          <div key={section.title}>
+            <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-brand-light mb-2">
+              {section.title}
+            </h3>
+            <div className="text-muted-foreground text-[15px] leading-relaxed whitespace-pre-line">
+              {section.content}
+            </div>
+          </div>
+        ))}
+
+        {/* CTA Button */}
+        <a
+          href={`${WHATSAPP_BASE}${procedure.whatsappText}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 mt-4 px-6 py-3 rounded-full bg-gradient-brand text-primary-foreground font-semibold text-sm tracking-wide hover:shadow-elegant hover:scale-105 transition-all duration-300"
+        >
+          👉 Agendar pelo WhatsApp
+        </a>
+      </div>
+    </article>
+  </ScrollReveal>
+);
+
 const ProcedureNav = ({ activeSlug, onSelect }: { activeSlug: string; onSelect: (slug: string) => void }) => (
   <nav className="sticky top-16 z-40 bg-background/90 backdrop-blur-md border-b border-border/50 shadow-sm">
     <div className="max-w-5xl mx-auto px-4 py-3 flex gap-2 overflow-x-auto scrollbar-hide">
