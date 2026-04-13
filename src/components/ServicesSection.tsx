@@ -1,32 +1,32 @@
-import { Snowflake, Droplets, Smile, Activity } from "lucide-react";
+import { Zap, Syringe, Sparkles, Snowflake } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá%20vim%20do%20site!%20Gostaria%20de%20saber%20mais%20sobre%20";
 
 const services = [
   {
+    icon: Zap,
+    name: "Remoção de Verrugas e Queloide",
+    desc: "Remoção precisa com tecnologia de plasma, sem cortes e com recuperação rápida, para todos os tipos e tamanhos.",
+    whatsappText: "Remoção%20de%20Verrugas%20e%20Queloide",
+  },
+  {
+    icon: Syringe,
+    name: "Botox Full Face",
+    desc: "Tratamento completo de harmonização facial com toxina botulínica para rejuvenescimento global e natural.",
+    whatsappText: "Botox%20Full%20Face",
+  },
+  {
+    icon: Sparkles,
+    name: "Preenchimento Full Face",
+    desc: "Restauração de volumes e redefinição de contornos com ácido hialurônico para um rosto mais jovem e harmônico.",
+    whatsappText: "Preenchimento%20Full%20Face",
+  },
+  {
     icon: Snowflake,
-    name: "Criolipólise",
+    name: "Crio Modelagem Corporal",
     desc: "Tecnologia de resfriamento controlado que elimina gordura localizada de forma definitiva e não invasiva.",
-    whatsappText: "Criolipólise",
-  },
-  {
-    icon: Droplets,
-    name: "Limpeza de Pele",
-    desc: "Protocolo completo de limpeza profunda que renova, hidrata e devolve o viço natural da pele.",
-    whatsappText: "Limpeza%20de%20Pele",
-  },
-  {
-    icon: Smile,
-    name: "Estética Facial",
-    desc: "Botox, preenchimentos e bioestimuladores para uma harmonização facial natural e equilibrada.",
-    whatsappText: "Estética%20Facial",
-  },
-  {
-    icon: Activity,
-    name: "Estética Corporal",
-    desc: "Drenagem linfática, radiofrequência e tratamentos modeladores para resultados visíveis.",
-    whatsappText: "Estética%20Corporal",
+    whatsappText: "Crio%20Modelagem%20Corporal",
   },
 ];
 
