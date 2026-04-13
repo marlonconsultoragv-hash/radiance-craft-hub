@@ -238,9 +238,12 @@ const procedures: Procedure[] = [
   },
 ];
 
+const toSlug = (name: string) =>
+  name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
 const ProcedureCard = ({ procedure, index }: { procedure: Procedure; index: number }) => (
   <ScrollReveal delay={index * 60}>
-    <article className="group rounded-2xl overflow-hidden border border-border/50 bg-card shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1">
+    <article id={toSlug(procedure.name)} className="group rounded-2xl overflow-hidden border border-border/50 bg-card shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-1 scroll-mt-36">
       {/* Image */}
       <div className="relative overflow-hidden aspect-[16/10]">
         <img
