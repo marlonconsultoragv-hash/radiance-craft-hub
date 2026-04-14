@@ -6,7 +6,7 @@ const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/
 const menuItems = [
   { label: "Home", href: "#home" },
   { label: "Procedimentos", href: "/procedimentos", isPage: true },
-  { label: "Transformações", href: "#transformacoes" },
+  { label: "Transformações", href: "/transformacoes", isPage: true },
   { label: "Localização", href: "#localizacao" },
   { label: "Contato", href: "#contato" },
 ];
