@@ -16,11 +16,16 @@ const CTASection = () => {
             <div className="relative z-10">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-primary-foreground mb-6 leading-tight">
                 Sua transformação{" "}
-                <span className="italic text-gold-light">começa agora</span>
+                <span className="italic text-gold-light">começa aqui</span>
               </h2>
-              <p className="text-primary-foreground/80 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-                Agende sua avaliação gratuita e descubra o tratamento ideal para
-                você. Estamos prontas para cuidar da sua beleza.
+              <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+                Agende sua consulta personalizada e descubra o tratamento ideal para o seu caso.
+                <br /><br />
+                Cada paciente é único, e por isso realizamos uma avaliação completa, analisando não apenas a queixa, mas também a causa de cada alteração estética. A partir dessa análise, desenvolvemos um protocolo exclusivo, com foco em resultados eficazes, naturais e duradouros.
+                <br /><br />
+                Mais do que uma simples avaliação, é um momento dedicado ao planejamento do seu tratamento, garantindo segurança, precisão e excelência em cada etapa.
+                <br /><br />
+                Estamos prontas para cuidar da sua beleza com responsabilidade e resultado.
               </p>
               <a
                 href={WHATSAPP_URL}
@@ -29,7 +34,7 @@ const CTASection = () => {
                 className="group inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full text-lg font-semibold shadow-elegant transition-all duration-300 hover:scale-105 bg-[#25D366] text-primary-foreground"
               >
                 <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                Agendar avaliação gratuita
+                Agende sua consulta
               </a>
             </div>
           </div>

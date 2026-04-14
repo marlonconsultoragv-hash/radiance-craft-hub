@@ -30,11 +30,11 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section id="resultados" className="section-padding bg-cream">
+    <section id="transformacoes" className="section-padding bg-cream">
       <div className="section-container">
         <ScrollReveal>
           <div className="text-center mb-16">
-            <span className="badge-label mb-4 block w-fit mx-auto">Depoimentos</span>
+            <span className="badge-label mb-4 block w-fit mx-auto">Transformações</span>
             <h2 className="heading-section">
               O que nossas clientes{" "}
               <span className="italic text-gold">dizem</span>

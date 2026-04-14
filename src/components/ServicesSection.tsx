@@ -6,27 +6,27 @@ const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá%20vim%20do%20site!%2
 const services = [
   {
     icon: Zap,
-    name: "Remoção de Verrugas e Queloide",
-    desc: "Remoção precisa com tecnologia de plasma, sem cortes e com recuperação rápida, para todos os tipos e tamanhos.",
-    whatsappText: "Remoção%20de%20Verrugas%20e%20Queloide",
+    name: "Remoção de Verrugas e Tratamento de Queloides",
+    desc: "A remoção é um procedimento seguro e minimamente invasivo. Realizado com anestesia local, proporciona conforto ao paciente, sendo praticamente indolor. A técnica atua diretamente na lesão, promovendo sua eliminação de forma precisa e eficaz. Ideal para quem busca um resultado estético com rápida recuperação e segurança.",
+    whatsappText: "Remoção%20de%20Verrugas%20e%20Queloides",
   },
   {
     icon: Syringe,
-    name: "Botox Full Face",
+    name: "Toxina Botulínica (Botox Full Face)",
     desc: "Tratamento completo de harmonização facial com toxina botulínica para rejuvenescimento global e natural.",
-    whatsappText: "Botox%20Full%20Face",
+    whatsappText: "Toxina%20Botulínica%20(Botox%20Full%20Face)",
   },
   {
     icon: Sparkles,
-    name: "Preenchimento Full Face",
+    name: "Preenchimento Facial (Full Face)",
     desc: "Restauração de volumes e redefinição de contornos com ácido hialurônico para um rosto mais jovem e harmônico.",
-    whatsappText: "Preenchimento%20Full%20Face",
+    whatsappText: "Preenchimento%20Facial%20(Full%20Face)",
   },
   {
     icon: Snowflake,
-    name: "Crio Modelagem Corporal",
+    name: "Criomodelagem Corporal",
     desc: "Tecnologia de resfriamento controlado que elimina gordura localizada de forma definitiva e não invasiva.",
-    whatsappText: "Crio%20Modelagem%20Corporal",
+    whatsappText: "Criomodelagem%20Corporal",
   },
 ];
 

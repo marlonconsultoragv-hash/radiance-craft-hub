@@ -40,9 +40,6 @@ const LocationSection = () => {
                 <p>
                   Estamos localizados próximos à Igreja Guadalupe, com fácil acesso tanto pela Avenida Miguel Sutil — logo após o Parque Mãe Bonifácia — quanto pelo Centro, subindo a Avenida Mato Grosso.
                 </p>
-                <p>
-                  Nosso espaço foi pensado para oferecer conforto, praticidade e bem-estar desde a sua chegada. Contamos com um ambiente aconchegante e vagas de estacionamento em frente à clínica, garantindo uma experiência tranquila e agradável para nossos clientes.
-                </p>
               </div>
             </div>
           </ScrollReveal>
