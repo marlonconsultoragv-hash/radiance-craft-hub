@@ -15,8 +15,8 @@ const CTASection = () => {
 
             <div className="relative z-10">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-primary-foreground mb-6 leading-tight">
-                Sua transformação{" "}
-                <span className="italic text-gold-light">começa aqui</span>
+                Sobre a nossa{" "}
+                <span className="italic text-gold-light">consulta</span>
               </h2>
               <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
                 Agende sua consulta personalizada e descubra o tratamento ideal para o seu caso.
