@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ArrowLeft, Camera } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import FooterSection from "@/components/FooterSection";
@@ -11,33 +11,89 @@ const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá%20vim%20do%20site!%2
 const categories = [
   {
     name: "Remoção de verrugas e tratamento de queloides",
-    slug: "verrugas-queloides",
+    slug: "verrugas",
     whatsappText: "Remoção%20de%20Verrugas%20e%20Queloides",
-    placeholder: true,
+    count: 6,
   },
   {
     name: "Toxina botulínica (Botox Full Face)",
     slug: "botox",
     whatsappText: "Toxina%20Botulínica%20(Botox%20Full%20Face)",
-    placeholder: true,
+    count: 10,
   },
   {
     name: "Preenchimento Facial (Full Face)",
     slug: "preenchimento",
     whatsappText: "Preenchimento%20Facial%20(Full%20Face)",
-    placeholder: true,
+    count: 10,
   },
   {
     name: "Criomodelagem corporal",
     slug: "criomodelagem",
     whatsappText: "Criomodelagem%20Corporal",
-    placeholder: true,
+    count: 7,
   },
 ];
 
+const PhotoCarousel = ({ slug, count }: { slug: string; count: number }) => {
+  const [current, setCurrent] = useState(0);
+  const images = Array.from({ length: count }, (_, i) => `/photos/${slug}/${i + 1}.jpeg`);
+
+  const next = useCallback(() => setCurrent((c) => (c + 1) % images.length), [images.length]);
+  const prev = useCallback(() => setCurrent((c) => (c - 1 + images.length) % images.length), [images.length]);
+
+  // Auto-advance every 4 seconds
+  useEffect(() => {
+    const timer = setInterval(next, 4000);
+    return () => clearInterval(timer);
+  }, [next]);
+
+  return (
+    <div className="relative group">
+      <div className="overflow-hidden rounded-xl aspect-[4/3] bg-background">
+        <img
+          src={images[current]}
+          alt={`Resultado ${current + 1}`}
+          className="w-full h-full object-cover transition-opacity duration-500"
+          loading="lazy"
+        />
+      </div>
+
+      {/* Navigation arrows */}
+      <button
+        onClick={prev}
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-brand/70 text-primary-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand"
+        aria-label="Anterior"
+      >
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+      <button
+        onClick={next}
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-brand/70 text-primary-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand"
+        aria-label="Próximo"
+      >
+        <ChevronRight className="w-5 h-5" />
+      </button>
+
+      {/* Dots indicator */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              i === current ? "bg-gold-light w-5" : "bg-primary-foreground/50"
+            }`}
+            aria-label={`Foto ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Transformacoes = () => {
   const navigate = useNavigate();
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen scroll-smooth bg-background">
@@ -69,27 +125,16 @@ const Transformacoes = () => {
             {categories.map((cat, i) => (
               <ScrollReveal key={cat.slug} delay={i * 100}>
                 <div className="bg-cream rounded-2xl border border-border/50 overflow-hidden hover:shadow-elegant transition-all duration-500 group">
-                  {/* Card Header */}
                   <div className="p-6 pb-4">
                     <h2 className="font-heading text-xl md:text-2xl font-semibold text-brand mb-2">
                       {cat.name}
                     </h2>
                   </div>
 
-                  {/* Placeholder for before/after photos */}
-                  <div className="px-6 pb-6">
-                    <div className="bg-background rounded-xl border-2 border-dashed border-border/60 p-12 flex flex-col items-center justify-center text-center min-h-[220px]">
-                      <Camera className="w-12 h-12 text-muted-foreground/40 mb-4" />
-                      <p className="text-muted-foreground text-sm font-medium mb-1">
-                        Fotos em breve
-                      </p>
-                      <p className="text-muted-foreground/60 text-xs">
-                        Estamos preparando os registros de antes e depois
-                      </p>
-                    </div>
+                  <div className="px-6 pb-4">
+                    <PhotoCarousel slug={cat.slug} count={cat.count} />
                   </div>
 
-                  {/* CTA */}
                   <div className="px-6 pb-6">
                     <a
                       href={`${WHATSAPP_URL}${cat.whatsappText}`}

@@ -5,7 +5,7 @@ const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá%20vim%20do%20site!%2
 
 const CTASection = () => {
   return (
-    <section id="contato" className="section-padding bg-background">
+    <section className="section-padding bg-background">
       <div className="section-container">
         <ScrollReveal>
           <div className="relative rounded-3xl overflow-hidden bg-gradient-brand p-12 md:p-20 text-center">
@@ -15,8 +15,8 @@ const CTASection = () => {
 
             <div className="relative z-10">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-primary-foreground mb-6 leading-tight">
-                Sua transformação{" "}
-                <span className="italic text-gold-light">começa aqui</span>
+                Sobre a nossa{" "}
+                <span className="italic text-gold-light">consulta</span>
               </h2>
               <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
                 Agende sua consulta personalizada e descubra o tratamento ideal para o seu caso.
