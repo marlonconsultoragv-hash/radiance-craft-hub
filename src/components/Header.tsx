@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { CalendarClock } from "lucide-react";
 
 const LOGO_URL = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663375312138/SwPWPBchFuFewecT.png";
 
@@ -141,6 +142,20 @@ const Header = () => {
             }`}
             style={{ transitionDelay: isOpen ? "600ms" : "0ms" }}
           />
+
+          {/* Agenda link - small and discreet */}
+          <a
+            href="https://bodysoul-agenda.lovable.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`mt-8 flex items-center gap-2 text-beige/30 hover:text-beige/60 transition-all duration-500 text-xs ${
+              isOpen ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ transitionDelay: isOpen ? "700ms" : "0ms" }}
+          >
+            <CalendarClock className="w-4 h-4" />
+            <span>Agenda</span>
+          </a>
         </nav>
       </div>
     </>
