@@ -5,7 +5,7 @@ const WHATSAPP_URL = "https://wa.me/5565992191416?text=Olá%20vim%20do%20site!%2
 
 const CTASection = () => {
   return (
-    <section id="contato" className="section-padding bg-background">
+    <section className="section-padding bg-background">
       <div className="section-container">
         <ScrollReveal>
           <div className="relative rounded-3xl overflow-hidden bg-gradient-brand p-12 md:p-20 text-center">
