@@ -54,7 +54,7 @@ const PhotoCarousel = ({ slug, count }: { slug: string; count: number }) => {
         <img
           src={images[current]}
           alt={`Resultado ${current + 1}`}
-          className="w-full h-full object-cover transition-opacity duration-500"
+          className="w-full h-full object-contain transition-opacity duration-500"
           loading="lazy"
         />
       </div>
