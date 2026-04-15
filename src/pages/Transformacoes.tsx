@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import FooterSection from "@/components/FooterSection";
@@ -35,60 +35,154 @@ const categories = [
   },
 ];
 
+const Lightbox = ({
+  images,
+  current,
+  onClose,
+  onPrev,
+  onNext,
+}: {
+  images: string[];
+  current: number;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+}) => {
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") onPrev();
+      if (e.key === "ArrowRight") onNext();
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, [onClose, onPrev, onNext]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center"
+      onClick={onClose}
+      onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
+      onTouchEnd={(e) => {
+        if (touchStart === null) return;
+        const diff = e.changedTouches[0].clientX - touchStart;
+        if (diff > 60) onPrev();
+        else if (diff < -60) onNext();
+        setTouchStart(null);
+      }}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+        aria-label="Fechar"
+      >
+        <X className="w-6 h-6" />
+      </button>
+
+      <div className="flex-1 flex items-center justify-center w-full px-2" onClick={(e) => e.stopPropagation()}>
+        <img
+          src={images[current]}
+          alt={`Foto ${current + 1}`}
+          className="max-h-[85vh] max-w-full object-contain rounded-lg"
+        />
+      </div>
+
+      <button
+        onClick={(e) => { e.stopPropagation(); onPrev(); }}
+        className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+        aria-label="Anterior"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <button
+        onClick={(e) => { e.stopPropagation(); onNext(); }}
+        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+        aria-label="Próximo"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
+      <div className="pb-4 pt-2 text-white/60 text-sm">
+        {current + 1} / {images.length}
+      </div>
+    </div>
+  );
+};
+
 const PhotoCarousel = ({ slug, count }: { slug: string; count: number }) => {
   const [current, setCurrent] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const images = Array.from({ length: count }, (_, i) => `/photos/${slug}/${i + 1}.jpeg`);
 
   const next = useCallback(() => setCurrent((c) => (c + 1) % images.length), [images.length]);
   const prev = useCallback(() => setCurrent((c) => (c - 1 + images.length) % images.length), [images.length]);
 
-  // Auto-advance every 4 seconds
   useEffect(() => {
+    if (lightboxOpen) return;
     const timer = setInterval(next, 4000);
     return () => clearInterval(timer);
-  }, [next]);
+  }, [next, lightboxOpen]);
 
   return (
-    <div className="relative group">
-      <div className="overflow-hidden rounded-xl aspect-[4/3] bg-background">
-        <img
-          src={images[current]}
-          alt={`Resultado ${current + 1}`}
-          className="w-full h-full object-contain transition-opacity duration-500"
-          loading="lazy"
-        />
-      </div>
-
-      {/* Navigation arrows */}
-      <button
-        onClick={prev}
-        className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-brand/70 text-primary-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand"
-        aria-label="Anterior"
-      >
-        <ChevronLeft className="w-5 h-5" />
-      </button>
-      <button
-        onClick={next}
-        className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-brand/70 text-primary-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand"
-        aria-label="Próximo"
-      >
-        <ChevronRight className="w-5 h-5" />
-      </button>
-
-      {/* Dots indicator */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-        {images.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              i === current ? "bg-gold-light w-5" : "bg-primary-foreground/50"
-            }`}
-            aria-label={`Foto ${i + 1}`}
+    <>
+      <div className="relative group">
+        <div
+          className="overflow-hidden rounded-xl aspect-[4/3] bg-background cursor-pointer"
+          onClick={() => setLightboxOpen(true)}
+        >
+          <img
+            src={images[current]}
+            alt={`Resultado ${current + 1}`}
+            className="w-full h-full object-contain transition-opacity duration-500"
+            loading="lazy"
           />
-        ))}
+        </div>
+
+        <button
+          onClick={prev}
+          className="absolute left-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-brand/70 text-primary-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand"
+          aria-label="Anterior"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <button
+          onClick={next}
+          className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-brand/70 text-primary-foreground flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-brand"
+          aria-label="Próximo"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-2 h-2 rounded-full transition-all ${
+                i === current ? "bg-gold-light w-5" : "bg-primary-foreground/50"
+              }`}
+              aria-label={`Foto ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+
+      {lightboxOpen && (
+        <Lightbox
+          images={images}
+          current={current}
+          onClose={() => setLightboxOpen(false)}
+          onPrev={prev}
+          onNext={next}
+        />
+      )}
+    </>
   );
 };
 
@@ -99,7 +193,6 @@ const Transformacoes = () => {
     <div className="min-h-screen scroll-smooth bg-background">
       <Header />
 
-      {/* Hero */}
       <section className="pt-28 pb-16 bg-gradient-brand text-primary-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <button
@@ -118,7 +211,6 @@ const Transformacoes = () => {
         </div>
       </section>
 
-      {/* Categories */}
       <section className="section-padding">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
