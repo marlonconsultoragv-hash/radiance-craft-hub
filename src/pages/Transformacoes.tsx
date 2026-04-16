@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import { ArrowLeft, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Lightbox from "@/components/Lightbox";
 import Header from "@/components/Header";
 import FooterSection from "@/components/FooterSection";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -35,85 +36,6 @@ const categories = [
   },
 ];
 
-const Lightbox = ({
-  images,
-  current,
-  onClose,
-  onPrev,
-  onNext,
-}: {
-  images: string[];
-  current: number;
-  onClose: () => void;
-  onPrev: () => void;
-  onNext: () => void;
-}) => {
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") onPrev();
-      if (e.key === "ArrowRight") onNext();
-    };
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKey);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKey);
-    };
-  }, [onClose, onPrev, onNext]);
-
-  return (
-    <div
-      className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center"
-      onClick={onClose}
-      onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
-      onTouchEnd={(e) => {
-        if (touchStart === null) return;
-        const diff = e.changedTouches[0].clientX - touchStart;
-        if (diff > 60) onPrev();
-        else if (diff < -60) onNext();
-        setTouchStart(null);
-      }}
-    >
-      <button
-        onClick={onClose}
-        className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
-        aria-label="Fechar"
-      >
-        <X className="w-6 h-6" />
-      </button>
-
-      <div className="flex-1 flex items-center justify-center w-full px-2" onClick={(e) => e.stopPropagation()}>
-        <img
-          src={images[current]}
-          alt={`Foto ${current + 1}`}
-          className="max-h-[85vh] max-w-full object-contain rounded-lg"
-        />
-      </div>
-
-      <button
-        onClick={(e) => { e.stopPropagation(); onPrev(); }}
-        className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
-        aria-label="Anterior"
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
-      <button
-        onClick={(e) => { e.stopPropagation(); onNext(); }}
-        className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
-        aria-label="Próximo"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
-
-      <div className="pb-4 pt-2 text-white/60 text-sm">
-        {current + 1} / {images.length}
-      </div>
-    </div>
-  );
-};
 
 const PhotoCarousel = ({ slug, count }: { slug: string; count: number }) => {
   const [current, setCurrent] = useState(0);
