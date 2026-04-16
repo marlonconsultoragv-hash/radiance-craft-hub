@@ -51,28 +51,6 @@ const ContactSection = () => {
           </ScrollReveal>
         </div>
 
-        <ScrollReveal delay={300}>
-          <div className="flex flex-wrap justify-center gap-4 mt-10">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#25D366] text-primary-foreground font-medium hover:opacity-90 transition-opacity text-base"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Fale pelo WhatsApp
-            </a>
-            <a
-              href="https://www.instagram.com/bodysoulesteticaavancada"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-brand text-primary-foreground font-medium hover:opacity-90 transition-opacity text-base"
-            >
-              <Instagram className="w-5 h-5" />
-              Instagram
-            </a>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );
