@@ -19,13 +19,13 @@ const CTASection = () => {
                 <span className="italic text-gold-light">consulta</span>
               </h2>
               <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                Agende sua consulta personalizada e descubra o tratamento ideal para o seu caso.
-                <br /><br />
-                Cada paciente é único, e por isso realizamos uma avaliação completa, analisando não apenas a queixa, mas também a causa de cada alteração estética. A partir dessa análise, desenvolvemos um protocolo exclusivo, com foco em resultados eficazes, naturais e duradouros.
+                A nossa consulta é um momento exclusivo onde cada paciente é único, e por isso realizamos uma avaliação completa, analisando não apenas a queixa, mas também a causa de cada alteração estética. A partir dessa análise, desenvolvemos um protocolo exclusivo, com foco em resultados eficazes, naturais e duradouros.
                 <br /><br />
                 Mais do que uma simples avaliação, é um momento dedicado ao planejamento do seu tratamento, garantindo segurança, precisão e excelência em cada etapa.
                 <br /><br />
                 Estamos prontas para cuidar da sua beleza com responsabilidade e resultado.
+                <br /><br />
+                Agende sua consulta personalizada e descubra o tratamento ideal para o seu caso.
               </p>
               <a
                 href={WHATSAPP_URL}
