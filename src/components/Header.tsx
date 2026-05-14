@@ -145,7 +145,7 @@ const Header = () => {
 
           {/* Agenda link - small and discreet */}
           <a
-            href="https://bodysoulagenda.pagina-oficial.com"
+            href="https://body-soul-agenda.lovable.app/agenda"
             target="_blank"
             rel="noopener noreferrer"
             className={`mt-8 flex items-center gap-2 text-beige/30 hover:text-beige/60 transition-all duration-500 text-xs ${
